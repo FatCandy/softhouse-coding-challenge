@@ -11,22 +11,13 @@ fun main(args: Array<String>) {
         enable(SerializationFeature.INDENT_OUTPUT)
         enable(SerializationFeature.WRAP_ROOT_VALUE)
     }
-
-    val people = People(
-        listOf(
-            Person(
-                firstname = "Victoria",
-                surname = "Bernadotte",
-                address = Address(
-                    "Haga Slott",
-                    "Stockholm",
-                    "101"
-                )
-            )
-        )
-    )
-
-
-    val xml = xmlMapper.writeValueAsString(people)
-    println(xml)
+    val personParser = PersonParser()
+    val resources = Resources()
+    resources.resourceOrNull("input_data")?.use { inputStream ->
+        inputStream.bufferedReader().use {
+            it.useLines { lines ->
+                println(xmlMapper.writeValueAsString(personParser.extractPeople(lines)))
+            }
+        }
+    }
 }
