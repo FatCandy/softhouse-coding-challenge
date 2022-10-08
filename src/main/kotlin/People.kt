@@ -8,9 +8,9 @@ data class People(
 data class Person(
     val firstname: String,
     val surname: String,
-    val address: Address? = null,
-    val family: Family? = null,
-    val phone: Phone? = null
+    var address: Address? = null,
+    var family: MutableList<Family?> = mutableListOf(),
+    var phone: Phone? = null
 )
 
 data class Family(
