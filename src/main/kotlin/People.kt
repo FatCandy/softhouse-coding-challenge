@@ -20,9 +20,9 @@ data class Family(
 )
 
 data class Address(
-    val street: String,
-    val town: String,
-    val postcode: String
+    val street: String?,
+    val town: String?,
+    val postcode: String?
 )
 
 data class Phone(
