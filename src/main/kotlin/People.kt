@@ -27,6 +27,6 @@ data class Address(
 )
 
 data class Phone(
-    val mobile: String,
-    val landline: String
+    val mobile: String?,
+    val landline: String?
 )
