@@ -14,9 +14,10 @@ data class Person(
 )
 
 data class Family(
-    val name: String,
-    val born: Int,
-    val address: Address? = null
+    var name: String?,
+    var born: String?,
+    var address: Address? = null,
+    var phone: Phone? = null
 )
 
 data class Address(
