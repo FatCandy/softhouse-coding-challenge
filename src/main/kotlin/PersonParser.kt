@@ -52,26 +52,29 @@ class PersonParser {
         return person
     }
 
-    private fun parsePerson(rawPerson: String?): Person? = rawPerson?.split("|")?.let { names ->
+    private fun parsePerson(rawPerson: String?): Person? = rawPerson?.delimited()?.let { names ->
         Person(firstname = names[0], surname = names[1])
     }
 
-    private fun parsePhone(rawPhone: String?): Phone? = rawPhone?.split("|")?.let { numbers ->
+    private fun parsePhone(rawPhone: String?): Phone? = rawPhone?.delimited()?.let { numbers ->
         Phone(mobile = numbers.getOrNull(0), landline = numbers.getOrNull(1))
     }
 
-    private fun parseAddress(rawAddress: String?): Address? = rawAddress?.split("|")?.let { address ->
+    private fun parseAddress(rawAddress: String?): Address? = rawAddress?.delimited()?.let { address ->
         Address(address.getOrNull(0), address.getOrNull(1), address.getOrNull(2))
     }
 
-    private fun parseFamily(rawFamily: String?): Family? = rawFamily?.split("|")?.let { family ->
+    private fun parseFamily(rawFamily: String?): Family? = rawFamily?.delimited()?.let { family ->
         Family(family.getOrNull(0), family.getOrNull(1))
     }
+
+    private fun String?.delimited(): List<String>? = this?.split(DELIMITER)
 
     companion object {
         private const val PERSON = "P"
         private const val ADDRESS = "A"
         private const val TELEPHONE = "T"
         private const val FAMILY = "F"
+        private const val DELIMITER = "|"
     }
 }
